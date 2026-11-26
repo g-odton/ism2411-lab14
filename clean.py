@@ -17,6 +17,14 @@ print()
 
 # exercise 3 - handle missing values
 before = len(df)
-df = df.dropna(subset=["order_id", "order_date"])
+df = df.dropna(subset=["order_id", "order_date"]) # no way to place order
 print(f"Dropped {before - len(df)} rows missing order_id or order_date")
-df["quantity_sold"] = df["quantity_sold"].fillna(df["quantity_sold"].mean())
+df["quantity_sold"] = df["quantity_sold"].fillna(df["quantity_sold"].mean()) #low % missing, aggregate analysis
+
+# exercise 4 - convert data types
+df["unit_price"] = df["unit_price"].str.replace("$", "", regex=False)
+df["unit_price"] = df["unit_price"].str.replace(",", "", regex=False).astype(float)
+df["quantity_sold"] = df["quantity_sold"].astype(int)
+df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+bad_dates = df["order_date"].isnull().sum()
+print(f"Unparseable dates: {bad_dates}")
