@@ -13,8 +13,10 @@ print()
 # exercise 2 - standardize the columns
 df.columns = df.columns.str.lower().str.replace(" ", "_")
 print(df.columns)
+print()
 
 # exercise 3 - handle missing values
+before = len(df)
 df = df.dropna(subset=["order_id", "order_date"])
+print(f"Dropped {before - len(df)} rows missing order_id or order_date")
 df["quantity_sold"] = df["quantity_sold"].fillna(df["quantity_sold"].mean())
-df["quantity_sold"] = df["quantity_sold"].astype(int)
