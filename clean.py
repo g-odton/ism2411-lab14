@@ -44,5 +44,9 @@ print(df.describe())
 print()
 
 # at least 2 stats that look suspicious:
-# 1.
-# 2.
+# 1. unit price and quantity sold have really long decimal places
+# 2. order date for mean(???) has a long decimal place, while all others have 00:00:00 for time
+
+df = df.dropna(subset=["quantity_sold"]) # made max 9999
+
+# exercise 7 - 
