@@ -31,3 +31,18 @@ bad_dates = df["order_date"].isnull().sum()
 print(f"Unparseable dates: {bad_dates}")
 print(df.dtypes)
 print()
+
+# exercise 5 - check duplicates
+print(f"Duplicate rows: {df.duplicated().sum()}")
+df = df.drop_duplicates()
+print(df.shape)
+print()
+
+# exercise 6 - describe
+print("\nDescriptive stats after cleaning:")
+print(df.describe())
+print()
+
+# at least 2 stats that look suspicious:
+# 1.
+# 2.
